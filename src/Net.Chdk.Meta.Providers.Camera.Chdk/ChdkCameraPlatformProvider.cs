@@ -6,8 +6,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
     {
         protected override T TryGetValue<T>(IDictionary<string, T> values, string platform)
         {
-            T value;
-            values.TryGetValue(platform, out value);
+            values.TryGetValue(platform, out T value);
             return value;
         }
     }
