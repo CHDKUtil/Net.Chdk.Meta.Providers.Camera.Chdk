@@ -8,30 +8,27 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
     {
         protected override void Validate(string platform, TreeAltData tree)
         {
-            if (tree != null)
+            if (tree.Adjustable)
             {
-                if (tree.Adjustable)
-                {
-                    if ((tree.Names == null || tree.Options == null))
-                        throw new InvalidOperationException($"{platform}: Mismatching button options");
+                if ((tree.Names == null || tree.Options == null))
+                    throw new InvalidOperationException($"{platform}: Mismatching button options");
 
-                    if (tree.Names.Length != tree.Options.Length)
-                        throw new InvalidOperationException($"{platform}: Mismatching button options");
-                }
-                else
-                {
-                    if (tree.Names != null || tree.Options != null)
-                        throw new InvalidOperationException($"{platform}: Invalid button options");
-                }
-
-                if (tree.Default != null && tree.Options != null && tree.Default != tree.Options[0])
-                    throw new InvalidOperationException($"{platform}: Mismatching buttons");
+                if (tree.Names.Length != tree.Options.Length)
+                    throw new InvalidOperationException($"{platform}: Mismatching button options");
             }
+            else
+            {
+                if (tree.Names != null || tree.Options != null)
+                    throw new InvalidOperationException($"{platform}: Invalid button options");
+            }
+
+            if (tree.Default != null && tree.Options != null && tree.Default != tree.Options[0])
+                throw new InvalidOperationException($"{platform}: Mismatching buttons");
         }
 
         protected override string GetAltButton(string platform, TreeAltData tree)
         {
-            if (tree == null || !tree.Adjustable)
+            if (!tree.Adjustable)
                 return "Print";
 
             switch (tree.Default)
