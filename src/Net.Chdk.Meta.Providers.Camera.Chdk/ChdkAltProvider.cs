@@ -4,8 +4,10 @@ using System;
 
 namespace Net.Chdk.Meta.Providers.Camera.Chdk
 {
-    sealed class ChdkAltProvider : AltProvider
+    sealed class ChdkAltProvider : ProductAltProvider
     {
+        public override string ProductName => "CHDK";
+
         protected override void Validate(string platform, TreeAltData tree)
         {
             if (tree.Adjustable)

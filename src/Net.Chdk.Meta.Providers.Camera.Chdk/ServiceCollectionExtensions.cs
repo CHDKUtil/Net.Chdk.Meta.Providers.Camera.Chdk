@@ -1,19 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Net.Chdk.Meta.Model.Camera.Ps;
 using Net.Chdk.Meta.Providers.Camera.Ps;
 
 namespace Net.Chdk.Meta.Providers.Camera.Chdk
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddChdkProviders(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddChdkCameraProviders(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddPsCameraProviders()
-                .AddSingleton<IAltProvider, ChdkAltProvider>()
-                .AddSingleton<ICameraPlatformProvider, ChdkCameraPlatformProvider>()
-                .AddSingleton<IRevisionProvider, ChdkRevisionProvider>()
-                .AddSingleton<ICameraValidator, ChdkCameraValidator>()
-                .AddSingleton<ICameraModelValidator, ChdkCameraModelValidator>();
+                .AddSingleton<IProductAltProvider, ChdkAltProvider>()
+                .AddSingleton<IProductRevisionProvider, ChdkRevisionProvider>()
+                .AddSingleton<IProductCameraCardProvider<PsCardData>, ChdkCameraCardProvider>()
+                .AddSingleton<IProductCameraPlatformProvider, ChdkCameraPlatformProvider>()
+                .AddSingleton<IProductCameraBootProvider, ChdkCameraBootProvider>()
+                .AddSingleton<IProductCameraValidator, ChdkCameraValidator>()
+                .AddSingleton<IProductCameraModelValidator, ChdkCameraModelValidator>();
         }
     }
 }

@@ -1,13 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Net.Chdk.Meta.Providers.Camera.Chdk
+﻿namespace Net.Chdk.Meta.Providers.Camera.Chdk
 {
-    sealed class ChdkCameraPlatformProvider : CameraPlatformProvider
+    sealed class ChdkCameraPlatformProvider : ProductCameraPlatformProvider
     {
-        protected override T TryGetValue<T>(IDictionary<string, T> values, string platform)
-        {
-            values.TryGetValue(platform, out T value);
-            return value;
-        }
+        public override string ProductName => "CHDK";
     }
 }
