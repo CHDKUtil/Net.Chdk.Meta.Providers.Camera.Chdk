@@ -8,6 +8,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
         public static IServiceCollection AddChdkProviders(this IServiceCollection serviceCollection)
         {
             return serviceCollection
+                .AddPsCameraProviders()
                 .AddSingleton<IAltProvider, ChdkAltProvider>()
                 .AddSingleton<ICameraPlatformProvider, ChdkCameraPlatformProvider>()
                 .AddSingleton<IRevisionProvider, ChdkRevisionProvider>()
