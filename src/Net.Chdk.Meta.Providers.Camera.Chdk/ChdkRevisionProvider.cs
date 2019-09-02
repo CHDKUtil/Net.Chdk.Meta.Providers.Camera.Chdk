@@ -1,6 +1,5 @@
 ﻿using Net.Chdk.Meta.Model.Camera.Ps;
 using Net.Chdk.Meta.Model.CameraList;
-using Net.Chdk.Meta.Model.CameraTree;
 using Net.Chdk.Meta.Providers.Camera.Ps;
 
 namespace Net.Chdk.Meta.Providers.Camera.Chdk
@@ -9,7 +8,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
     {
         public override string ProductName => "CHDK";
 
-        public override RevisionData GetRevision(string revision, TreeRevisionData treeRevision, ListPlatformData list, TreePlatformData tree)
+        protected override RevisionData GetRevision(string revision, ListRevisionData listRevision, ListPlatformData list)
         {
             return GetRevision(revision);
         }
